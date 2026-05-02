@@ -46,10 +46,10 @@ function ConfidenceCard({ label, time, confidence, isSelected, onClick }) {
 
 
 export default function ResultScreen({routes,selectedRoute, setSelectedRoute,origin, destination,setCurrentScreen,}) {
-  // State for selected confidence level
+
   const [selectedConfidence, setSelectedConfidence] = useState(73);
   
-  // Conditional rendering: if no route was selected, show empty state
+  
   if (!selectedRoute) {
     return (
       <div className="empty-state">
