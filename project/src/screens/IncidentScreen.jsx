@@ -121,7 +121,7 @@ function IncidentScreen() {
       </div>
 
       <div className="incident-section">
-        <div className="incident-section-title">Estimated Duration</div>
+        <div className="incident-section-title">Stucked For </div>
         <div className="severity-row" style={{ flexWrap: 'wrap', gap: '6px' }}>
           {durations.map((d) => (
             <button
