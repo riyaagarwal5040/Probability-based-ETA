@@ -25,7 +25,6 @@ export default function PathSureApp() {
 
   const [theme, setTheme] = useState('dark');
 
-  // useEffect: apply theme class to <html> whenever theme changes
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
@@ -34,9 +33,7 @@ export default function PathSureApp() {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   }
 
-  // ── Pick which screen to show ─────────────────────────────────
   function renderScreen() {
-    // All shared state is passed as props (prop drilling)
     const props = {
       origin, setOrigin,
       destination, setDestination,
@@ -63,7 +60,6 @@ export default function PathSureApp() {
           {renderScreen()}
         </div>
 
-        {/* Sticky bottom nav — passes only what it needs */}
         <BottomNav
           currentScreen={currentScreen}
           setCurrentScreen={setCurrentScreen}
