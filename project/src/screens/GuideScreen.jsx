@@ -1,8 +1,3 @@
-/**
- * GuideScreen.jsx — Help and FAQ.
- * No inline styles - all styling via className
- */
-
 import React, { useState } from 'react';
 import '../styles/GuideScreen.css';
 
@@ -30,7 +25,6 @@ export default function GuideScreen() {
   return (
     <div className="screen-container">
 
-      {/* Header */}
       <div className="guide-header">
         <div className="guide-icon">?</div>
         <div>
@@ -39,7 +33,6 @@ export default function GuideScreen() {
         </div>
       </div>
 
-      {/* GPS vs PathSure comparison */}
       <div className="comparison-card">
         <div className="comparison-column">
           <div className="comparison-heading comparison-heading-gps">Traditional GPS</div>
@@ -56,12 +49,10 @@ export default function GuideScreen() {
         </div>
       </div>
 
-      {/* How it works — label */}
       <div className="section-title">
         How It Works
       </div>
 
-      {/* Steps */}
       {STEPS.map((step, i) => (
         <div
           key={i}
@@ -84,12 +75,10 @@ export default function GuideScreen() {
         </div>
       ))}
 
-      {/* FAQ label */}
       <div className="section-title">
         FAQ
       </div>
 
-      {/* FAQ accordion — conditional rendering per item */}
       {FAQ.map((item, i) => (
         <div key={i} className="faq-card">
           <button
@@ -100,7 +89,6 @@ export default function GuideScreen() {
             <span className="faq-arrow">{openFaq === i ? '▲' : '▼'}</span>
           </button>
 
-          {/* Answer: only rendered when this FAQ is open */}
           {openFaq === i && (
             <div className="faq-answer">
               {item.a}
