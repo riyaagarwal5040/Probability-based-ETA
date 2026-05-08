@@ -53,7 +53,7 @@ function IncidentScreen() {
 
     setSubmitted(true);
 
-    // Increase community count dynamically
+    
     setCommunityCount((prev) => prev + Math.floor(Math.random() * 6) + 1);
 
     setTimeout(() => {
@@ -155,7 +155,7 @@ function IncidentScreen() {
         />
       </div>
 
-      {/* Community Box */}
+      
       <div className="community-box">
         🚘 {communityCount} drivers rerouted today using
         community reports
