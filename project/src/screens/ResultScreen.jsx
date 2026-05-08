@@ -44,7 +44,6 @@ function ConfidenceCard({ label, time, confidence, isSelected, onClick }) {
 
 
 
-
 export default function ResultScreen({routes,selectedRoute, setSelectedRoute,origin, destination,setCurrentScreen,}) {
 
   const [selectedConfidence, setSelectedConfidence] = useState(73);

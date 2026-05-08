@@ -1,4 +1,3 @@
-import React from 'react';
 import '../styles/RouteMap.css';
 
 export default function RouteMap({ route, origin, destination }) {
@@ -16,7 +15,7 @@ export default function RouteMap({ route, origin, destination }) {
   const coordinates = route.geometry.coordinates
   
   const step = Math.max(1, Math.floor(coordinates.length / 8))
-
+  
   const waypoints = coordinates
     .filter((_, i) => i % step === 0)
     .slice(1, -1) 

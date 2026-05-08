@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import BottomNav from './components/BottomNav'
+import HomeScreen from './screens/HomeScreen'
 import ResultScreen from './screens/ResultScreen'
+import IncidentScreen from './screens/IncidentScreen'
 import CompareScreen from './screens/CompareScreen'
+import GuideScreen from './screens/GuideScreen'
 
-export default function App() {
+export default function PathSureApp() {
 
-  const [currentScreen,setCurrentScreen] = useState('result')
+  const [currentScreen,setCurrentScreen] = useState('home')
 
   const [origin,setOrigin] = useState(null)
 
@@ -18,11 +22,38 @@ export default function App() {
 
   const [error,setError] = useState(null)
 
-  function renderScreen() {
-    const props = {origin, setOrigin, destination, setDestination, routes, setRoutes, selectedRoute, setSelectedRoute, isLoading, setIsLoading, error, setError, setCurrentScreen}
 
-    if (currentScreen === 'result') return <ResultScreen {...props} />;
-    if (currentScreen === 'compare') return <CompareScreen {...props} />;
+  const [theme, setTheme] = useState('dark');
+
+  // useEffect: apply theme class to <html> whenever theme changes
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  function toggleTheme() {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  }
+
+  // ── Pick which screen to show ─────────────────────────────────
+  function renderScreen() {
+    // All shared state is passed as props (prop drilling)
+    const props = {
+      origin, setOrigin,
+      destination, setDestination,
+      routes, setRoutes,
+      selectedRoute, setSelectedRoute,
+      isLoading, setIsLoading,
+      error, setError,
+      setCurrentScreen,
+      theme, toggleTheme,
+    };
+
+    if (currentScreen === 'home')     return <HomeScreen     {...props} />;
+    if (currentScreen === 'result')   return <ResultScreen   {...props} />;
+    if (currentScreen === 'incident') return <IncidentScreen {...props} />;
+    if (currentScreen === 'compare')  return <CompareScreen  {...props} />;
+    if (currentScreen === 'guide')    return <GuideScreen />;
+    return <HomeScreen {...props} />;
   }
 
   return (
@@ -31,6 +62,12 @@ export default function App() {
         <div className="screen-scroll" style={{ flex: 1, overflowY: 'auto' }}>
           {renderScreen()}
         </div>
+
+        {/* Sticky bottom nav — passes only what it needs */}
+        <BottomNav
+          currentScreen={currentScreen}
+          setCurrentScreen={setCurrentScreen}
+        />
       </div>
     </div>
   );
